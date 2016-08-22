@@ -10,8 +10,8 @@ This repository contains 4 main components:
 * A program to train a LSTM model to fit the data
 * A sampling program to generate new lyrics based on the learned data
 
-The Deep Learning algorithm is implemented and tested with [TensorFlow](https://www.tensorflow.org/) version 0.10.0rc0.
-The parser is gathering lyrics from [songmeanings.com](http://songmeanings.com/) which does not provide any API to request data. Therefore, it is needed to manually find the IDs of the artists you want to get inspired from and pass them to the script. The fun thing is that it does not matter if the artists you pick are related in style or not, the algorithm will learn from all of them; which can obviously lead to some cool results.
+The Deep Learning algorithm is implemented and tested with [TensorFlow](https://www.tensorflow.org/) version *0.10.0rc0*.
+The parser is gathering lyrics from [songmeanings.com](http://songmeanings.com/) which does not provide any API to request data. Therefore, it is needed to manually find the IDs of the artists you want to get inspired from and pass them to the script. The fun thing is that it does not matter if the artists you pick are related in style or not, the algorithm will learn from all of them; which can obviously lead to some cool results!
 
 ## Usage
 Try it yourself by running *example.sh* with your own data.
