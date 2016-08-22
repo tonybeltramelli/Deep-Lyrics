@@ -31,10 +31,10 @@ Try it yourself by running *example.sh* with your own data.
 ```
 
 ## Note
-I highly recommend these two great articles to anyone willing to understand how Recurrent Neural Networks works and particularly LSTM.
+I highly recommend these two great articles to anyone willing to understand how Recurrent Neural Networks works and particularly LSTM:
 
-[The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
-[Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+* [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+* [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 
 ## Example
 Example of lyrics generated with this code (slightly edited to fix typos).
