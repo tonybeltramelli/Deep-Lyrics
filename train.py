@@ -13,7 +13,7 @@ def main():
     parser.add_argument('--vocabulary_file', type=str, required=True)
     parser.add_argument('--model_name', type=str, required=True)
 
-    parser.add_argument('--epoch', type=int, default=50)
+    parser.add_argument('--epoch', type=int, default=200)
     parser.add_argument('--batch_size', type=int, default=50)
     parser.add_argument('--sequence_length', type=int, default=50)
     parser.add_argument('--log_frequency', type=int, default=100)
