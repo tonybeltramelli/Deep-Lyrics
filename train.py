@@ -55,7 +55,7 @@ def main():
     expected_prediction = tf.equal(tf.argmax(classifier, 1), tf.argmax(model.y, 1))
     accuracy = tf.reduce_mean(tf.cast(expected_prediction, tf.float32))
 
-    init = tf.initialize_all_variables()
+    init = tf.global_variables_initializer()
 
     with tf.Session() as sess:
         sess.run(init)
@@ -75,7 +75,7 @@ def main():
         batch.clean()
         print("Optimization done")
 
-        saver = tf.train.Saver(tf.all_variables())
+        saver = tf.train.Saver(tf.global_variables())
         checkpoint_path = "{}/{}.ckpt".format(model_name, model_name)
         saver.save(sess, checkpoint_path, global_step=iteration * batch_size)
         print("Model saved in {}".format(model_name))

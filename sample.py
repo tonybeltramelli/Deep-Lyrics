@@ -43,9 +43,9 @@ def main():
         sample_file.write(char)
 
     with tf.Session() as sess:
-        tf.initialize_all_variables().run()
+        tf.global_variables_initializer().run()
 
-        saver = tf.train.Saver(tf.all_variables())
+        saver = tf.train.Saver(tf.global_variables())
         ckpt = tf.train.get_checkpoint_state(model_name)
 
         if ckpt and ckpt.model_checkpoint_path:

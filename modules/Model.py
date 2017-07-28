@@ -2,7 +2,7 @@ __author__ = 'Tony Beltramelli www.tonybeltramelli.com - 19/08/2016'
 
 import tensorflow as tf
 import pickle
-from tensorflow.python.ops import rnn, rnn_cell
+from tensorflow.contrib import rnn
 
 
 class Model:
@@ -30,15 +30,15 @@ class Model:
 
         x = tf.transpose(self.x, [1, 0, 2])
         x = tf.reshape(x, [-1, input_number])
-        x = tf.split(0, sequence_length, x)
+        x = tf.split(x, sequence_length, 0)
 
         lstm_layers = []
         for i in range(0, layers_number):
-            lstm_layer = rnn_cell.BasicLSTMCell(units_number, forget_bias=1.0, state_is_tuple=True)
+            lstm_layer = rnn.BasicLSTMCell(units_number)
             lstm_layers.append(lstm_layer)
-        deep_lstm = rnn_cell.MultiRNNCell(lstm_layers, state_is_tuple=True)
+        deep_lstm = rnn.MultiRNNCell(lstm_layers)
 
-        self.outputs, states = rnn.rnn(deep_lstm, x, dtype=tf.float32)
+        self.outputs, states = rnn.static_rnn(deep_lstm, x, dtype=tf.float32)
 
         print "Build model with input_number: {}, sequence_length: {}, layers_number: {}, " \
               "units_number: {}, output_number: {}".format(input_number, sequence_length, layers_number,
