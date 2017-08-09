@@ -5,6 +5,7 @@ import argparse
 import os
 import urllib2
 import re
+import codecs
 from threading import Thread
 from HTMLParser import HTMLParser
 
@@ -18,8 +19,8 @@ def start_new_thread(task, arg):
 
 
 def write_to_file(path, data):
-    output_file = open(path, 'a')
-    output_file.write(data)
+    output_file = codecs.open(path, 'a', 'utf_8')
+    output_file.write(data.encode('utf-8'))
     output_file.write("\n")
     output_file.close()
 

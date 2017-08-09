@@ -2,6 +2,7 @@
 __author__ = 'Tony Beltramelli www.tonybeltramelli.com - 19/08/2016'
 
 import argparse
+import codecs
 from modules.Vocabulary import *
 
 
