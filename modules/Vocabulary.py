@@ -56,6 +56,7 @@ class Vocabulary:
 
     def get_serialized_binary_representation(self):
         string = ""
+        np.set_printoptions(threshold='nan')
         for key, value in self.binary_vocabulary.iteritems():
             array_as_string = np.array2string(value, separator=',', max_line_width=self.size * self.size)
             string += "{}{}{}\n".format(key.encode('utf-8'), self.separator, array_as_string[1:len(array_as_string) - 1])
