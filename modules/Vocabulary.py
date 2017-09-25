@@ -1,7 +1,7 @@
 __author__ = 'Tony Beltramelli www.tonybeltramelli.com - 19/08/2016'
 
 import numpy as np
-
+import codecs
 
 class Vocabulary:
     vocabulary = {}
@@ -11,7 +11,7 @@ class Vocabulary:
     separator = '->'
 
     def generate(self, input_file_path):
-        input_file = open(input_file_path, 'r')
+        input_file = codecs.open(input_file_path, 'r', 'utf_8')
         index = 0
         for line in input_file:
             for char in line:
@@ -24,7 +24,7 @@ class Vocabulary:
         self.create_binary_representation()
 
     def retrieve(self, input_file_path):
-        input_file = open(input_file_path, 'r')
+        input_file = codecs.open(input_file_path, 'r', 'utf_8')
         buffer = ""
         for line in input_file:
             try:
@@ -56,7 +56,8 @@ class Vocabulary:
 
     def get_serialized_binary_representation(self):
         string = ""
+        np.set_printoptions(threshold='nan')
         for key, value in self.binary_vocabulary.iteritems():
             array_as_string = np.array2string(value, separator=',', max_line_width=self.size * self.size)
-            string += "{}{}{}\n".format(key, self.separator, array_as_string[1:len(array_as_string) - 1])
+            string += "{}{}{}\n".format(key.encode('utf-8'), self.separator, array_as_string[1:len(array_as_string) - 1])
         return string

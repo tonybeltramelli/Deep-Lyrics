@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 __author__ = 'Tony Beltramelli www.tonybeltramelli.com - 20/08/2016'
 
+import codecs
 from modules.Vocabulary import *
 
 
@@ -8,7 +9,7 @@ class Batch:
     dataset_full_passes = 0
 
     def __init__(self, data_file_name, vocabulary_file_path, batch_size, sequence_length):
-        self.data_file = open(data_file_name, 'r')
+        self.data_file = codecs.open(data_file_name, 'r', 'utf_8')
 
         self.vocabulary = Vocabulary()
         self.vocabulary.retrieve(vocabulary_file_path)
@@ -24,7 +25,7 @@ class Batch:
 
         if len(current_batch) < string_len:
             while len(current_batch) < string_len:
-                current_batch += ' '
+                current_batch += u' '
             self.data_file.seek(0)
             self.dataset_full_passes += 1
             print "Pass {} done".format(self.dataset_full_passes)

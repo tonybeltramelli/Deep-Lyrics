@@ -2,10 +2,10 @@
 __author__ = 'Tony Beltramelli www.tonybeltramelli.com - 19/08/2016'
 
 import argparse
+import codecs
 from modules.Model import *
 from modules.Vocabulary import *
 from collections import deque
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -21,7 +21,7 @@ def main():
     model_name = args.model_name
     vocabulary_file = args.vocabulary_file
     output_file = args.output_file
-    seed = args.seed
+    seed = args.seed.decode('utf-8')
     sample_length = args.sample_length
     log_frequency = args.log_frequency
 
@@ -32,20 +32,23 @@ def main():
     vocabulary = Vocabulary()
     vocabulary.retrieve(vocabulary_file)
 
-    sample_file = open(output_file, 'w')
+    sample_file = codecs.open(output_file, 'w', 'utf_8')
 
     stack = deque([])
     for i in range(0, model.sequence_length - len(seed)):
-        stack.append(" ")
+        stack.append(u' ')
 
     for char in seed:
+        if char not in vocabulary.vocabulary:
+            print char,"is not in vocabulary file"
+            char = u' '
         stack.append(char)
         sample_file.write(char)
 
     with tf.Session() as sess:
-        tf.initialize_all_variables().run()
+        tf.global_variables_initializer().run()
 
-        saver = tf.train.Saver(tf.all_variables())
+        saver = tf.train.Saver(tf.global_variables())
         ckpt = tf.train.get_checkpoint_state(model_name)
 
         if ckpt and ckpt.model_checkpoint_path:
